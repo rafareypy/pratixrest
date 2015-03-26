@@ -21,6 +21,11 @@ public class ProductServiceImpl extends BasicService implements ProductService, 
     @Override
     public Product saveProduct(Product product) {
         
+        
+        getEm().getTransaction().begin();
+        getEm().persist(product);
+        getEm().getTransaction().commit();
+        
 //        System.out.println("Save product to ProductService");
 //        
 //        EntityManagerFactory  emf = Persistence.createEntityManagerFactory("pratixPU");

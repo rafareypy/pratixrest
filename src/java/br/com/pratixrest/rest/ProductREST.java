@@ -46,13 +46,13 @@ public class ProductREST {
     @Produces("application/json")
     public String getJson() {
             //ProductService productService = new ProductServiceImpl();
-        ProductService  productService  = new ProductServiceImpl();
-        
-                Product product = new Product();
-            product.setName("product test");
-
-
-            productService.saveProduct(product);
+            ProductService  productService  = new ProductServiceImpl();
+//        
+//                Product product = new Product();
+//            product.setName("product test");
+//
+//
+//            productService.saveProduct(product);
 
         
             return new Gson().toJson(productService.getListProduct());
@@ -74,31 +74,46 @@ public class ProductREST {
     public void putJson(String content) {
     }
     
-    @POST
-    @Consumes("application/json")
-    public void postJson(String content) {
-        System.out.println("Creating Product to APi");
+    @POST    
+    @Consumes({"application/json"})
+    public void create(Product entity) {
+
+            ProductService  productService  = new ProductServiceImpl();
         
-        System.out.println("Creating Product to APi");
-        
-        
-        
-        System.out.println(content);
-        
-        ProductService  productService  = new ProductServiceImpl();
-        
-        Product product = new Product();
-        product.setName("product test");
-        
-        
-        productService.saveProduct(product);
-        
-        
-        
-        
+            Product product = new Product();
+            product.setName("post");
+
+            productService.saveProduct(product);
         
         
     }
+
+    
+//    @POST
+//    @Consumes("application/json")
+//    public void postJson(String content) {
+//        System.out.println("Creating Product to APi");
+//        
+//        System.out.println("Creating Product to APi");
+//        
+//        
+//        
+//        System.out.println(content);
+//        
+//        ProductService  productService  = new ProductServiceImpl();
+//        
+//        Product product = new Product();
+//        product.setName("product test post");
+//        
+//        
+//        productService.saveProduct(product);
+//        
+//        
+//        
+//        
+//        
+//        
+//    }
 
     
     
