@@ -23,6 +23,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 
 @Path("product")
@@ -46,9 +47,20 @@ public class ProductREST {
     public String getJson() {
             //ProductService productService = new ProductServiceImpl();
         ProductService  productService  = new ProductServiceImpl();
+        
+                Product product = new Product();
+            product.setName("product test");
+
+
+            productService.saveProduct(product);
+
+        
             return new Gson().toJson(productService.getListProduct());
         
          // return new Gson().toJson(new Product());
+            
+
+            
 
     }
 
@@ -61,4 +73,33 @@ public class ProductREST {
     @Consumes("application/json")
     public void putJson(String content) {
     }
+    
+    @POST
+    @Consumes("application/json")
+    public void postJson(String content) {
+        System.out.println("Creating Product to APi");
+        
+        System.out.println("Creating Product to APi");
+        
+        
+        
+        System.out.println(content);
+        
+        ProductService  productService  = new ProductServiceImpl();
+        
+        Product product = new Product();
+        product.setName("product test");
+        
+        
+        productService.saveProduct(product);
+        
+        
+        
+        
+        
+        
+    }
+
+    
+    
 }

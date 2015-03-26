@@ -3,24 +3,12 @@
   <persistence-unit name="pratixPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>br.com.pratixrest.model.Product</class>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/pratixapi"/>
       <property name="javax.persistence.jdbc.password" value="pcom919491949"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
-    </properties>
-  </persistence-unit>
-  <persistence-unit name="pratixPU2" transaction-type="RESOURCE_LOCAL">
-    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>br.com.pratixrest.model.Product</class>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/pratixapi"/>
-      <property name="javax.persistence.jdbc.password" value="pcom919491949"/>
-      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-      <property name="javax.persistence.jdbc.user" value="postgres"/>
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
 </persistence>

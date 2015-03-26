@@ -10,6 +10,9 @@ import br.com.pratix.service.interfaces.ProductService;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 
 @Stateless
@@ -17,7 +20,31 @@ public class ProductServiceImpl extends BasicService implements ProductService, 
     
     @Override
     public Product saveProduct(Product product) {
-        return new Product();
+        
+//        System.out.println("Save product to ProductService");
+//        
+//        EntityManagerFactory  emf = Persistence.createEntityManagerFactory("pratixPU");
+//        EntityManager  em = emf.createEntityManager();
+//        
+//        System.out.println("Save product to ProductService");
+//        
+//        try {
+//            
+//            em.getTransaction().begin();
+//            em.persist(product);
+//            em.getTransaction().commit();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            
+//        }finally{
+//            em.close();
+//            emf.close();
+//        }
+        
+        
+        
+        return product ;
+        
     }
     @Override
     public Product udpateProduct(Product product) {
