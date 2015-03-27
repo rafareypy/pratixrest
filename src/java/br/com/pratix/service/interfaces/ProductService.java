@@ -14,9 +14,10 @@ import java.util.List;
  */
 public interface ProductService {
     
-     public Product saveProduct(Product product);
+    public Product saveProduct(Product product);
     public Product udpateProduct(Product product);
     public Boolean deleteProduct(Product product);
+    public Boolean deleteProduct(Integer id);
     public Product getProduct(Product product);
     public Product getProduct(Integer id);
     public List<Product> getListProduct();

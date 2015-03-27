@@ -16,6 +16,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 @Path("product")
@@ -45,14 +46,16 @@ public class ProductREST {
      * @return an HTTP response with content of the updated or created resource.
      */
     @PUT
-    @Consumes("application/json")
-    public void putJson(Product product) {
-
+    @Path("{id}")
+    @Consumes({ "application/json"})
+    public void putJson(@PathParam("id") Integer id, Product product) {
+        
         try {
+            product.setId(id);
             productService.udpateProduct(product);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Error in create ProductREST \n " + e.getMessage()  );
+            System.out.println("Error in update ProductREST \n " + e.getMessage()  );
         }        
         
     }
@@ -71,16 +74,17 @@ public class ProductREST {
     }    
 
     @DELETE
-    @Consumes("application/json")
-    public void deleteJson(Product product) {
-
-        try {
-            productService.deleteProduct(product);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error in create ProductREST \n " + e.getMessage()  );
-        }        
+    @Path("{id}")
+    public void remove(@PathParam("id") Integer id) {
         
+        System.out.println("Delete product params : " + id);
+        
+        try {
+            productService.deleteProduct(id);
+        } catch (Exception e) {
+            System.out.println("Error in delete product ");
+            e.printStackTrace();
+        }
     }
     
     

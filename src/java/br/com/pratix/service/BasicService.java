@@ -16,10 +16,15 @@ import javax.persistence.Query;
 
 public class BasicService  implements java.io.Serializable {
     
-     private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 2L;
+     
     @PersistenceContext(unitName = "pratixPU")
     private EntityManager em;
-        public BasicService() {
+    
+    
+    public BasicService() 
+    {
+        
     }
         
     public EntityManager getEm() {

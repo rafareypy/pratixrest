@@ -23,6 +23,7 @@ public class ProductServiceImpl extends BasicService implements ProductService, 
         getEm().getTransaction().begin();
         getEm().persist(product);
         getEm().getTransaction().commit();
+        getEm().close();
         return product ;
     }
     
@@ -31,6 +32,7 @@ public class ProductServiceImpl extends BasicService implements ProductService, 
         getEm().getTransaction().begin();
         getEm().merge(product);
         getEm().getTransaction().commit();
+        getEm().close();
         return product ;        
     }
     
@@ -39,6 +41,7 @@ public class ProductServiceImpl extends BasicService implements ProductService, 
         getEm().getTransaction().begin();
         getEm().remove(product);
         getEm().getTransaction().commit();
+        getEm().close();
         return true ;        
     }
     
@@ -60,6 +63,19 @@ public class ProductServiceImpl extends BasicService implements ProductService, 
     @Override
     public List<Product> getListProductByName(String name) {
         return getEm().createQuery("from Product ").getResultList();
+    }
+
+    @Override
+    public Boolean deleteProduct(Integer id) {
+        
+        Product product = getEm().find(Product.class, id);
+        
+        if(product != null )
+            return this.deleteProduct(product);
+        
+        return false ;
+        
+        
     }
 
 }
