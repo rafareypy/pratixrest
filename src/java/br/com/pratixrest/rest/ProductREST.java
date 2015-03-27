@@ -5,36 +5,28 @@
  */
 package br.com.pratixrest.rest;
 
-import br.com.pratix.service.ProductServiceImpl;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.GET;
-import javax.ws.rs.Produces;
 
 import br.com.pratix.service.interfaces.ProductService;
 import br.com.pratix.service.ProductServiceImpl;
 import br.com.pratixrest.model.Product;
 import com.google.gson.Gson;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 
 @Path("product")
 public class ProductREST {
 
-    @Context
-    private UriInfo context;
-
+    ProductService  productService  ;
     /**
      * Creates a new instance of ProductREST
      */
     public ProductREST() {
+        init();        
     }
 
     /**
@@ -43,13 +35,8 @@ public class ProductREST {
      */
     @GET
     @Produces("application/json")
-    public String getJson() {
-            //ProductService productService = new ProductServiceImpl();
-        ProductService  productService  = new ProductServiceImpl();
-            return new Gson().toJson(productService.getListProduct());
-        
-         // return new Gson().toJson(new Product());
-
+    public String getJson() {       
+        return new Gson().toJson(productService.getListProduct());        
     }
 
     /**
@@ -59,6 +46,46 @@ public class ProductREST {
      */
     @PUT
     @Consumes("application/json")
-    public void putJson(String content) {
+    public void putJson(Product product) {
+
+        try {
+            productService.udpateProduct(product);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error in create ProductREST \n " + e.getMessage()  );
+        }        
+        
     }
+    
+    @POST    
+    @Consumes({"application/json"})
+    public void create(Product product) {
+
+        try {
+            productService.saveProduct(product);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error in create ProductREST \n " + e.getMessage()  );
+        }
+                
+    }    
+
+    @DELETE
+    @Consumes("application/json")
+    public void deleteJson(Product product) {
+
+        try {
+            productService.deleteProduct(product);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error in create ProductREST \n " + e.getMessage()  );
+        }        
+        
+    }
+    
+    
+    private void init() {
+        productService  = new ProductServiceImpl();
+    }
+    
 }

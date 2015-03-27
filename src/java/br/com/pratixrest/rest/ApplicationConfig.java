@@ -12,7 +12,7 @@ import javax.ws.rs.core.Application;
  *
  * @author pontocom
  */
-@javax.ws.rs.ApplicationPath("webresources")
+@javax.ws.rs.ApplicationPath("rs")
 public class ApplicationConfig extends Application {
 
     @Override

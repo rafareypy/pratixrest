@@ -42,4 +42,8 @@ public class BasicService  implements java.io.Serializable {
     return qr;
 }
     
+    public void sysou(String message){
+        System.out.println(" \n " + message );
+    }
+    
 }
